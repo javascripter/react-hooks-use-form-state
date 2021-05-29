@@ -7,7 +7,7 @@
 
 ## The Problem
 
-You use a data fetching libraries like useSWR() and useQuery() and want to set initialState dynamically after some data has been fetched.
+You use data fetching libraries like useSWR() and useQuery() and want to set initialState dynamically after some data has been fetched.
 
 ### Explanation
 
