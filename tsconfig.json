@@ -1,0 +1,4 @@
+// tsconfig.json
+{
+  "extends": "rollpkg/configs/tsconfig.json"
+}

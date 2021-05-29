@@ -1,0 +1,56 @@
+{
+  "name": "react-hooks-use-form-state",
+  "version": "0.0.1",
+  "description": "The missing React Hook to handle form initial values that depend on dynamic data from SWR, React Query, and more",
+  "main": "dist/react-hooks-use-form-state.cjs.js",
+  "scripts": {
+    "build": "rollpkg build",
+    "watch": "rollpkg watch",
+    "prepublishOnly": "npm run build",
+    "lint": "eslint src",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "coverage": "npx live-server coverage/lcov-report"
+  },
+  "module": "dist/react-hooks-use-form-state.esm.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "author": "Tsubasa Sakai <javascripter@tsukkun.net> (https://github.com/javascripter)",
+  "license": "MIT",
+  "homepage": "https://github.com/javascripter/use-form-state#readme",
+  "keywords": [
+    "react",
+    "form",
+    "state",
+    "hooks",
+    "swr",
+    "react-query"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javascripter/use-form-state.git"
+  },
+  "bugs": {
+    "url": "https://github.com/javascripter/use-form-state/issues"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@types/react": "^17.0.8",
+    "react": "^17.0.2",
+    "rollpkg": "^0.5.7",
+    "typescript": "^4.3.2"
+  },
+  "peerDependencies": {
+    "react": "*"
+  },
+  "eslintConfig": {
+    "extends": [
+      "./node_modules/rollpkg/configs/eslint"
+    ]
+  },
+  "jest": {
+    "preset": "rollpkg"
+  }
+}
