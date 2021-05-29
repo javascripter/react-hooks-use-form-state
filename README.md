@@ -1,5 +1,5 @@
 <div align="center">
-<h1>useForm()</h1>
+<h1>useFormState()</h1>
 <p>The missing React Hook to handle form initial values that depend on dynamic data from SWR, React Query, and more</p>
 </div>
 
@@ -36,12 +36,12 @@ Evne if you don't use suspense and split components into parent / child, you sti
 
 ## The Solution
 
-Use `useForm()` to automatically handle updates to initialValue until user starts editing the value.
+Use `useFormState()` to automatically handle updates to initialValue until user starts editing the value.
 
 ```typescript
 const options = { suspense: true }
 const { data: product } = useSWR(`/products/${id}`, options)
-const [name, setState] = useForm(product.name)
+const [name, setState] = useFormState(product.name)
 
 // or even without suspense you can write almost exactly the same
 const { data: product } = useSWR(`/products/${id}`)
