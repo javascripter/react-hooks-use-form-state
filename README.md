@@ -55,7 +55,7 @@ const [name, setName] = useForm(product?.name ?? '')
 The simplified version of the hook is like this:
 
 ```typescript
-function useForm(initialValue) {
+function useFormState(initialValue) {
   const [isChanged, setIsChanged] = useState(false)
   const [state, setState] = useState(undefined)
   return [
