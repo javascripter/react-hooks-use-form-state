@@ -7,7 +7,7 @@
 
 ## 🚧 The Problem
 
-When using data fetching libraries like useSWR() and useQuery(), setting the initial state of a form dynamically after data has been fetched can be challenging. If the fetched data is stale on the initial render, the form state may not update correctly after revalidation.
+When using data fetching libraries like useSWR() and useQuery(), Managing the initial state of a form state based on dynamic data using `useState()` can be challenging. If the fetched data is stale on the initial render, the form state may not update correctly after revalidation. Simple state synchronization via `useEffect()` may result in unintended loss of edits due to race conditions.
 
 ## ✅ The Solution
 
@@ -37,7 +37,9 @@ const [state, setState, resetState] = useFormState(dynamicData)
 setState((prevState) => nextState)
 
 // For example, you can clear state on modal open
-const onModalOpen = { resetState() }
+const onModalOpen = () => {
+  resetState()
+}
 ```
 
 ## 📦 Installation
