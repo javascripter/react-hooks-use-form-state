@@ -1,63 +1,66 @@
 <div align="center">
 <h1>useFormState()</h1>
-<p>The missing React Hook to handle form initial values that depend on dynamic data from SWR, React Query, and more</p>
+<p>🎉 A simple and concise React Hook to handle form initial values that depend on dynamic data from SWR, React Query, and more.</p>
 </div>
 
 ---
 
-## The Problem
+## 🚧 The Problem
 
-You use data fetching libraries like useSWR() and useQuery() and want to set initialState dynamically after some data has been fetched.
+When using data fetching libraries like useSWR() and useQuery(), setting the initial state of a form dynamically after data has been fetched can be challenging. If the fetched data is stale, the form state may not update correctly after revalidation.
 
-### Explanation
+## ✅ The Solution
 
-Suppose you have an index page and an edit page for some products.
-
-When you navigate to an edit page from `/products` to `/products/:id/edit`, ideally you want to write code like this and call it a day.
+`useFormState()` automatically handles updates to the initial value until the user starts editing the value.
 
 ```typescript
-const opts = { suspense: true }
+import { useFormState } from 'react-hooks-use-form-state'
 
-const { data: product } = useSWR(`/products/${id}`, opts)
-const [name, setName] = useState(product.name)
-// ...
-```
-
-However, the above code does NOT work properly.
-
-If product name has changed and you have a stale cache, useSWR() will return _stale data_ on first render and your state will **not** be updated after revalidation.
-
-Evne if you don't use suspense and split components into parent / child, you still have to handle the problem of staleness somehow. What to do?
-
-### Related discussions of the problem
-
-- [use SWR with a controlled form #561](https://github.com/vercel/swr/discussions/561)
-- https://github.com/react-hook-form/react-hook-form/discussions/2282
-
-## The Solution
-
-Use `useFormState()` to automatically handle updates to initialValue until user starts editing the value.
-
-```typescript
-const options = { suspense: true }
-const { data: product } = useSWR(`/products/${id}`, options)
-const [name, setState] = useFormState(product.name)
-
-// or even without suspense you can write almost exactly the same
 const { data: product } = useSWR(`/products/${id}`)
-const [name, setName] = useForm(product?.name ?? '')
+const [name, setName] = useFormState(product?.name ?? '')
 
-// ...
+// 1. `name` variable will update itself whenever product name changes.
+// 2. After `setName` is called, `name` will not react to initial value changes, preventing any loss of changes made manually.
 ```
 
-## How does it work?
+## ✨ Features
 
-The simplified version of the hook is like this:
+- Automatically handles updates to the initial value until the user starts editing
+- Supports TypeScript
+- Supports functional state updater pattern
+- Provides a reset function to revert back to the initial state
+
+```typescript
+import { useFormState } from 'react-hooks-use-form-state'
+
+const [state, setState, resetState] = useFormState(dynamicData)
+setState((prevState) => nextState)
+
+// For example, you can clear state on modal open
+const onModalOpen = { resetState() }
+```
+
+## 📦 Installation
+
+```bash
+yarn add react-hooks-use-form-state
+```
+
+or
+
+```bash
+npm install react-hooks-use-form-state
+```
+
+## 🔍 How It Works
+
+The simplified version of the hook looks like this:
 
 ```typescript
 function useFormState(initialValue) {
   const [isChanged, setIsChanged] = useState(false)
   const [state, setState] = useState(undefined)
+
   return [
     isChanged ? state : initialValue,
     (state) => {
@@ -68,23 +71,12 @@ function useFormState(initialValue) {
 }
 ```
 
-In addition to the above, this library supports TypeScript, functional state updater pattern, and a reset function to revert back to `initialState`.
+In addition to the above, useFormState() supports TypeScript, functional state
+updater pattern, and a reset function to revert back to the initial state.
+`useFormState()` also provides stable `setState` and `resetState` similar to React's
+`setState()` hook.
 
-```typescript
-import { useFormState } from 'react-hooks-use-form-state'
-const [state, setState, reset] = useFormState(dynamicData)
-setState((prevState) => nextValue)
+### 📚 Related discussions
 
-// For example, you can clear state on modal open
-const onModalOpen = { reset() }
-```
-
-## Installation
-
-```
-yarn add react-hooks-use-form-state
-
-or
-
-npm install react-hooks-use-form-state
-```
+- [use SWR with a controlled form #561](https://github.com/vercel/swr/discussions/561)
+- https://github.com/react-hook-form/react-hook-form/discussions/2282
