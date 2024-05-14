@@ -7,7 +7,7 @@
 
 ## 🚧 The Problem
 
-When using data fetching libraries like useSWR() and useQuery(), setting the initial state of a form dynamically after data has been fetched can be challenging. If the fetched data is stale, the form state may not update correctly after revalidation.
+When using data fetching libraries like useSWR() and useQuery(), setting the initial state of a form dynamically after data has been fetched can be challenging. If the fetched data is stale on the initial render, the form state may not update correctly after revalidation.
 
 ## ✅ The Solution
 
