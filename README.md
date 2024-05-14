@@ -25,10 +25,10 @@ const [name, setName] = useFormState(product?.name ?? '')
 
 ## ✨ Features
 
-- Automatically handles updates to the initial value until the user starts editing
-- Supports TypeScript
-- Supports functional state updater pattern
-- Provides a reset function to revert back to the initial state
+- 🔄 Automatically updates the initial value until the user starts editing
+- 💻 Supports TypeScript
+- 🛠️ Functional state updater pattern
+- 🔄 Provides a reset function to revert to the initial state
 
 ```typescript
 import { useFormState } from 'react-hooks-use-form-state'
@@ -76,7 +76,7 @@ updater pattern, and a reset function to revert back to the initial state.
 `useFormState()` also provides stable `setState` and `resetState` similar to React's
 `setState()` hook.
 
-### 📚 Related discussions
+## 📚 Related discussions
 
 - [use SWR with a controlled form #561](https://github.com/vercel/swr/discussions/561)
 - https://github.com/react-hook-form/react-hook-form/discussions/2282
